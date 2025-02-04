@@ -1,0 +1,82 @@
+<%- layout("layouts/boilerplate") %>
+<div class="row">
+    <div class="col-8 offset-2 mt-3">
+        <h3><%= list.title %></h3>
+    </div>
+
+    <div>
+        <div class="card col-6 offset-2 listing-card">
+            <img 
+                src="<%= list.image.url %>" 
+                class="card-img-top show-img" 
+                alt="listing-img" 
+            />
+            <div class="card-body">
+                <p class="card-text">
+                    <b><%= list.title %></b><br>
+                    <%= list.description %><br>
+                    &#8377;<%= list.price && typeof list.price === "number" ? list.price.toLocaleString("en-IN") : "Price not available" %> / night <br>
+                    <%= list.location %><br>
+                    <%= list.country %><br>
+                </p>
+            </div>
+        </div>
+        <br>
+
+        <!-- Show Edit and Delete buttons only for the owner -->
+        <% if (userlogged && list.owner && list.owner._id.toString() === userlogged._id.toString()) { %>
+            <form class="mb-3" method="post" action="/listings/<%= list._id %>?_method=DELETE">
+                <button class="btn btn-sm btn-dark mb-1">Delete</button>
+            </form>
+            <a href="/listings/<%= list._id %>/edit" class="btn btn-sm btn-dark mb-1">Edit</a>
+        <% } %>
+
+        <br>
+        <hr>
+
+        <div class="col-8 offset-3 mb-3">
+            <!-- Show Leave a Review form only if the user is logged in and hasn't already reviewed -->
+            <% if (userlogged && !list.reviews.some(review => review.author._id.toString() === userlogged._id.toString())) { %>
+                <h4>Leave a Review</h4>
+                <form method="post" action="/listings/<%= list.id %>/reviews" novalidate class="needs-validation">
+                    <div class="mb-3 mt-3">
+                        <label for="rating" class="form-label">Rating</label>
+                        <input type="range" min="1" max="5" id="rating" name="review[rating]" class="form-range" value="3.5">
+                    </div>
+                    
+                    <div class="mb-3 mt-3">
+                        <label for="comment" class="form-label">Comments</label>
+                        <textarea name="review[comment]" id="comment" cols="30" rows="5" class="form-control" required></textarea>
+                        <div class="invalid-feedback">Please enter comments for review</div>
+                    </div>
+                    <button class="btn btn-outline-dark">Submit</button>
+                </form>
+            <% } else if (userlogged) { %>
+                <p>You have already left a review for this listing.</p>
+            <% } %>
+
+            <p><b>All Reviews</b></p>
+            <div class="row">
+                <% if (Array.isArray(list.reviews) && list.reviews.length > 0) { %>
+                    <% for (let review of list.reviews) { %>
+                        <div class="card col-5 ms-3 mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title"><%= review.author.username %></h5>
+                                <p class="card-text"><%= review.comment %></p>
+                                <p class="card-text"><%= review.rating %> stars</p>
+                            </div>
+                            <!-- Check if the logged-in user is the author of the review -->
+                            <% if (userlogged && review.author._id.toString() === userlogged._id.toString()) { %>
+                                <form class="mb-3" method="post" action="/listings/<%= list.id %>/reviews/<%= review.id %>?_method=DELETE">
+                                    <button class="btn btn-sm btn-dark mb-1">Delete</button>
+                                </form>
+                            <% } %>
+                        </div>
+                    <% } %>
+                <% } else { %>
+                    <p>No reviews available.</p>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
