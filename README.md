@@ -1,7 +1,7 @@
-# Listings Project
+# EliteListings Project
 
 ## Overview
-The Listings Project is a web application that allows users to create, view, and manage various listings. Built using the MERN stack (MongoDB, Express.js, React, and Node.js), it provides a seamless and dynamic user experience.
+The EliteListings Project is a web application that allows users to create, view, and manage various listings. Built using the MERN stack (MongoDB, Express.js, React, and Node.js), it provides a seamless and dynamic user experience.
 
 ## Features
 - User authentication and authorization
@@ -12,16 +12,16 @@ The Listings Project is a web application that allows users to create, view, and
 
 ## Technologies Used
 - Frontend: React, HTML, CSS, JavaScript
-- Backend: Node.js, Express.js
+- Backend:Node.js, Express.js
 - Database: MongoDB
-- Version Control:Git & GitHub
+- Version Control: Git & GitHub
 
 ## Installation
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/GayathriKomma/listings-project.git
-   cd listings-project
+   git clone https://github.com/GayathriKomma/elite-listings.git
+   cd elite-listings
    ```
 2. Install dependencies:
    ```bash
@@ -52,4 +52,3 @@ For any queries, feel free to reach out:
 
 ## License
 This project is licensed under the MIT License.
-
