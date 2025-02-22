@@ -14,6 +14,8 @@ const path = require("path");
 const passport=require("passport");
 const LocalStrategy=require("passport-local");
 const User=require("./models/user.js");
+const ExpressError = require("./utils/ExpressError.js");
+
 // const wrapAsync=require("./utils/wrapAsync.js");
 // const ExpressError=require("./utils/ExpressError.js");
 // const {listingSchema,reviewSchema}=require("./schema.js");
@@ -194,6 +196,9 @@ app.use("/",userRouter);
 
 //   res.redirect(`/listings/`);
 // }))
+app.use("/",(req,res)=>{
+    res.send("Welcome")
+})
 app.all("*",(req,res,next)=>{
   next(new ExpressError(404,"No page"))
 })
