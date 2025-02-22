@@ -46,9 +46,9 @@ Contributions are welcome! To contribute:
 
 ## Contact
 For any queries, feel free to reach out:
-- **Email:** gayathrikomma309@gmail.com
-- **LinkedIn:** [Gayathri Komma](https://linkedin.com/in/gayathri-komma-3aa335302)
-- **GitHub:** [GayathriKomma](https://github.com/GayathriKomma)
+- Email: gayathrikomma309@gmail.com
+- LinkedIn: [Gayathri Komma](https://linkedin.com/in/gayathri-komma-3aa335302)
+- GitHub: [GayathriKomma](https://github.com/GayathriKomma)
 
 ## License
 This project is licensed under the MIT License.
